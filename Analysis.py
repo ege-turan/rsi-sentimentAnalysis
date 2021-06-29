@@ -22,3 +22,6 @@ tokens = [t for t in nltk.word_tokenize(raw) if t not in (',', '“', '”', '"'
 # (1) lexical_richness
 distinct_tokens = set(tokens)
 lexical_richness = len(distinct_tokens) / len(tokens)
+
+freq = nltk.FreqDist(tokens)
+print(freq.most_common(200))
