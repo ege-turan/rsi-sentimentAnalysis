@@ -1,0 +1,24 @@
+%matplotlib inline
+import nltk
+import re
+
+# Open the book
+with open('text') as t:
+    text = [l.strip() for l in t]
+
+# PLEASE STAY LOW!
+text = [t.lower() for t in text][:-10]
+
+# Remove 'chapter i' strings
+regexp = re.compile(r'chapter \d')
+text = [t for t in text if not re.match(regexp, t)]
+
+# Raw text (one huge giant string)
+raw = ' '.join(text)
+
+# Here's the magic
+tokens = [t for t in nltk.word_tokenize(raw) if t not in (',', '“', '”', '"')]
+
+# (1) lexical_richness
+distinct_tokens = set(tokens)
+lexical_richness = len(distinct_tokens) / len(tokens)
